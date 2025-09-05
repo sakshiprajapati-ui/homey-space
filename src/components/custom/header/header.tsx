@@ -39,7 +39,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow-lg">
       <ShimmerBG />
-      <div className="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-white">
+      <div className="relative max-w-7xl mx-auto px-6 py-3 flex justify-between items-center text-white">
         {/* Logo */}
         <motion.a
           href="/"
