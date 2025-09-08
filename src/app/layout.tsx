@@ -5,7 +5,6 @@ import "./globals.css";
 import Header from "@/components/custom/header/header";
 import Footer from "@/components/custom/footer/footer";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -21,15 +20,14 @@ export const metadata: Metadata = {
   description: "get rental houses",
 };
 
-
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="min-h-screen  bg-black text-white">
-        <Header/>
+      <body className={`${geistSans.variable} ${geistMono.variable} min-h-screen`}>
+        <Header />
         {children}
-        <Footer/>
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
