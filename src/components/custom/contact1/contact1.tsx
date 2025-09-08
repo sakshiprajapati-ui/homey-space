@@ -17,12 +17,7 @@ import {
 } from "lucide-react";
 
 // shadcn/ui imports
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -61,7 +56,7 @@ export default function ContactPage() {
     formState: { errors },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
-    defaultValues: { whatsapp: true } as any,
+    defaultValues: { whatsapp: true },
   });
 
   const onSubmit = async (data: ContactFormData) => {
@@ -76,7 +71,7 @@ export default function ContactPage() {
 
   return (
     <div className="relative min-h-dvh bg-white text-slate-800 pt-20 sm:pt-24">
-  <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 lg:py-24">
+      <div className="mx-auto max-w-6xl px-4 py-10 sm:py-16 lg:py-24">
         {/* Hero */}
         <div className="mb-12 grid gap-8 md:grid-cols-[1.2fr_1fr] md:items-center">
           <div>
@@ -91,9 +86,9 @@ export default function ContactPage() {
             <p className="mt-3 max-w-prose text-slate-600 sm:text-base">
               Tell us what you’re looking for —{" "}
               <span className="font-semibold text-blue-600">PG</span>,
-              <span className="font-semibold text-blue-600"> Apartment</span>, or{" "}
-              <span className="font-semibold text-blue-600">Hostel</span> — and
-              we’ll help you find the perfect rental.
+              <span className="font-semibold text-blue-600"> Apartment</span>,
+              or <span className="font-semibold text-blue-600">Hostel</span> —
+              and we’ll help you find the perfect rental.
             </p>
 
             {/* Quick Contacts */}
@@ -134,7 +129,9 @@ export default function ContactPage() {
                 <Building2 className="h-5 w-5 text-blue-600" />
                 <div>
                   <p className="text-xs text-slate-500">Verified listings</p>
-                  <p className="text-sm font-medium">Apartments across the city</p>
+                  <p className="text-sm font-medium">
+                    Apartments across the city
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -143,7 +140,9 @@ export default function ContactPage() {
                 <Home className="h-5 w-5 text-blue-600" />
                 <div>
                   <p className="text-xs text-slate-500">Hassle-free move-in</p>
-                  <p className="text-sm font-medium">Flexible terms available</p>
+                  <p className="text-sm font-medium">
+                    Flexible terms available
+                  </p>
                 </div>
               </CardContent>
             </Card>
@@ -218,10 +217,8 @@ export default function ContactPage() {
                     <Label>Rental type</Label>
                     <Select
                       onValueChange={(v: "PG" | "Apartment" | "Hostel") =>
-                                                 setValue("rentalType", v)
-                                  }
-
-
+                        setValue("rentalType", v)
+                      }
                     >
                       <SelectTrigger>
                         <SelectValue placeholder="Choose" />
@@ -285,7 +282,7 @@ export default function ContactPage() {
                   <label className="inline-flex items-center gap-2 text-sm text-slate-600">
                     <Switch
                       defaultChecked
-                             onCheckedChange={(v: boolean) => setValue("whatsapp", v)}
+                      onCheckedChange={(v: boolean) => setValue("whatsapp", v)}
                     />
                     Contact me on WhatsApp
                   </label>
