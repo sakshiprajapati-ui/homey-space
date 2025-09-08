@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
 import ApartmentCard from "@/components/custom/apartmentcard/Apartmentcard";
-
 
 type Apartment = {
   image: string;
@@ -39,8 +38,8 @@ export default function ApartmentsSection() {
   ];
 
   return (
-    <section className="max-w-7xl mx-auto py-16 px-6">
-      <h2 className="text-4xl font-extrabold text-center mb-6 tracking-tight bg-linear-to-r from-sky-500 via-blue-500 to-slate-500 bg-clip-text text-transparent animate-pulse">
+    <section className="max-w-7xl mx-auto py-16 px-6 bg-black">
+      <h2 className="text-4xl font-extrabold text-center mb-6 tracking-tight ">
         Featured Apartments
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
