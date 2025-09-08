@@ -39,7 +39,7 @@ function SpotlightBG() {
 function RadiantCard({ children }: { children: React.ReactNode }) {
   return (
     <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-300 animate-border shadow-[0_0_25px_rgba(255,255,255,0.15)]">
-      <div className="rounded-2xl bg-white/80 dark:bg-gray-900/90 backdrop-blur text-gray-900 dark:text-white h-full">
+      <div className="rounded-2xl bg-white/90 dark:bg-gray-950/90 backdrop-blur text-gray-900 dark:text-white h-full">
         {children}
       </div>
       <style jsx>{`
@@ -96,88 +96,89 @@ export default function ThemingPage() {
   });
 
   return (
-    <RadiantCard>
-      <div className={`relative ${darkMode ? "bg-gray-900 text-white" : "bg-gradient-to-br from-gray-50 to-white text-gray-900"} min-h-screen px-6 py-12 transition-colors`}>
-        <SpotlightBG />
+    <div className={`relative min-h-screen px-6 py-12 transition-colors ${darkMode 
+      ? "bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white" 
+      : "bg-gradient-to-br from-gray-50 via-white to-gray-100 text-gray-900"}`}>
 
-        <div className="max-w-6xl mx-auto text-center relative z-10">
-          {/* Header */}
-          <motion.h1
-            initial={{ opacity: 0, y: -30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400"
+      <SpotlightBG />
+
+      <div className="max-w-6xl mx-auto text-center relative z-10">
+        {/* Header */}
+        <motion.h1
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-400"
+        >
+          Theming for PG / Hostel / Apartment Variants
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3, duration: 0.6 }}
+          className="max-w-2xl mx-auto mb-12 text-gray-600 dark:text-gray-300"
+        >
+          Explore different accommodation styles with unique themes, facilities, and experiences.
+        </motion.p>
+
+        {/* Controls */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12">
+          <Input
+            placeholder="Search variants..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full sm:w-1/3"
+          />
+
+          <Select onValueChange={setFilter} defaultValue="all">
+            <SelectTrigger className="w-full sm:w-40">
+              <SelectValue placeholder="Filter" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="Budget">Budget</SelectItem>
+              <SelectItem value="Economy">Economy</SelectItem>
+              <SelectItem value="Premium">Premium</SelectItem>
+            </SelectContent>
+          </Select>
+
+          <Button
+            variant="outline"
+            onClick={() => setDarkMode(!darkMode)}
+            className="flex items-center gap-2"
           >
-            Theming for PG / Hostel / Apartment Variants
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
-            className="max-w-2xl mx-auto mb-12 text-gray-600 dark:text-gray-300"
-          >
-            Explore different accommodation styles with unique themes, facilities, and experiences.
-          </motion.p>
+            {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            {darkMode ? "Light Mode" : "Dark Mode"}
+          </Button>
+        </div>
 
-          {/* Controls */}
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-12">
-            <Input
-              placeholder="Search variants..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full sm:w-1/3"
-            />
-
-            <Select onValueChange={setFilter} defaultValue="all">
-              <SelectTrigger className="w-full sm:w-40">
-                <SelectValue placeholder="Filter" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All</SelectItem>
-                <SelectItem value="Budget">Budget</SelectItem>
-                <SelectItem value="Economy">Economy</SelectItem>
-                <SelectItem value="Premium">Premium</SelectItem>
-              </SelectContent>
-            </Select>
-
-            <Button
-              variant="outline"
-              onClick={() => setDarkMode(!darkMode)}
-              className="flex items-center gap-2"
+        {/* Cards */}
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          {filteredVariants.map((variant, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.2 }}
             >
-              {darkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
-              {darkMode ? "Light Mode" : "Dark Mode"}
-            </Button>
-          </div>
-
-          {/* Cards */}
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            {filteredVariants.map((variant, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.2 }}
-              >
-                <RadiantCard>
-                  <Card className="rounded-2xl shadow-lg bg-transparent border-0">
-                    <CardContent className="flex flex-col items-center p-6 space-y-4">
-                      {variant.icon}
-                      <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">{variant.title}</h3>
-                      <p className="text-center text-gray-600 dark:text-gray-300">{variant.description}</p>
-                      <Shimmer>
-                        <Button className="mt-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:from-blue-700 hover:to-cyan-500 rounded-xl">
-                          Explore
-                        </Button>
-                      </Shimmer>
-                    </CardContent>
-                  </Card>
-                </RadiantCard>
-              </motion.div>
-            ))}
-          </div>
+              <RadiantCard>
+                <Card className="rounded-2xl shadow-lg bg-transparent border-0">
+                  <CardContent className="flex flex-col items-center p-6 space-y-4">
+                    {variant.icon}
+                    <h3 className="text-xl font-semibold text-blue-700 dark:text-blue-400">{variant.title}</h3>
+                    <p className="text-center text-gray-600 dark:text-gray-300">{variant.description}</p>
+                    <Shimmer>
+                      <Button className="mt-4 bg-gradient-to-r from-blue-600 to-cyan-400 text-white hover:from-blue-700 hover:to-cyan-500 rounded-xl">
+                        Explore
+                      </Button>
+                    </Shimmer>
+                  </CardContent>
+                </Card>
+              </RadiantCard>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </RadiantCard>
+    </div>
   );
 }
