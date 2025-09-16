@@ -57,30 +57,30 @@ export default function HeroSlider() {
                 />
 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40" />
+                <div className="absolute inset-0 bg-[#021526]/70" />
 
                 {/* Text + Search */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8 }}
-                  className="relative z-10 text-center text-white px-6 flex flex-col items-center gap-6"
+                  className="relative z-10 text-center text-[#E2E2B6] px-6 flex flex-col items-center gap-6"
                 >
-                  <h2 className="text-4xl md:text-6xl font-bold drop-shadow-lg">
+                  <h2 className="text-4xl md:text-6xl font-bold drop-shadow-lg text-[#E2E2B6]">
                     {slide.title}
                   </h2>
-                  <p className="mt-2 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+                  <p className="mt-2 text-lg md:text-xl font-medium max-w-2xl mx-auto text-[#E2E2B6]/90">
                     {slide.desc}
                   </p>
 
                   {/* Search Bar */}
-                  <div className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-lg flex items-center w-full max-w-xl overflow-hidden mt-6">
+                  <div className="bg-[#E2E2B6]/95 backdrop-blur-lg rounded-2xl shadow-lg flex items-center w-full max-w-xl overflow-hidden mt-6">
                     <input
                       type="text"
                       placeholder="Search rentals, locations..."
-                      className="flex-1 px-4 py-3 text-gray-700 focus:outline-none bg-transparent"
+                      className="flex-1 px-4 py-3 text-[#021526] focus:outline-none bg-transparent"
                     />
-                    <button className="bg-indigo-600 text-white px-5 py-3 flex items-center gap-2 font-medium hover:bg-indigo-700 transition">
+                    <button className="bg-[#03346E] text-[#E2E2B6] px-5 py-3 flex items-center gap-2 font-medium hover:bg-[#6EACDA] hover:text-[#021526] transition">
                       <Search size={18} />
                       Search
                     </button>
@@ -92,8 +92,8 @@ export default function HeroSlider() {
         </CarouselContent>
 
         {/* Navigation */}
-        <CarouselPrevious className="left-4" />
-        <CarouselNext className="right-4" />
+        <CarouselPrevious className="left-4 text-[#E2E2B6] hover:text-[#6EACDA]" />
+        <CarouselNext className="right-4 text-[#E2E2B6] hover:text-[#6EACDA]" />
       </Carousel>
     </section>
   );

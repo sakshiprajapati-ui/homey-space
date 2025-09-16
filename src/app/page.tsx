@@ -8,7 +8,7 @@ import  Amenities1 from "@/components/custom/amenities1/amenities1";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-[#021526]">
       {/* ✅ Hero Slider */}
       <HeroSlider />
       <ApartmentsSection />
@@ -20,10 +20,11 @@ export default function Home() {
 
       {/* ✅ Example content */}
       <section className="max-w-7xl mx-auto px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">
-          Welcome to HouseySpaces
-        </h2>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <h2 className="text-3xl font-bold  text-gray-900 mb-4">
+             Welcome to HouseySpaces
+             </h2>
+
+        <p className="text-lg text-white-600 max-w-2xl mx-auto">
           Find your dream rental home with ease. Browse through thousands of
           verified properties and book instantly.
         </p>

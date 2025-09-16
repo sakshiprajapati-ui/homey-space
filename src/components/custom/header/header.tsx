@@ -10,19 +10,42 @@ function ShimmerBG() {
   return (
     <div className="absolute inset-0 -z-10 overflow-hidden">
       {/* Gradient base */}
-      <div className="absolute inset-0 bg-linear-to-r from-sky-900 via-indigo-900 to-cyan-800 opacity-30" />
-
+      <div className="absolute inset-0 bg-linear-to-r from-sky-900 via-indigo-900 to-cyan-800 opacity-95" />
       {/* Radial glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.12),transparent_60%)]" />
       {/* Shimmer sweep */}
       <div className="absolute inset-0 bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.2),transparent)] animate-[shimmer_6s_infinite]" />
       <style jsx>{`
         @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
         }
       `}</style>
     </div>
+  );
+}
+
+// ✅ Reusable shimmer wrapper
+function Shimmer({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-flex overflow-hidden rounded-2xl">
+      <span className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+      <style jsx>{`
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+      `}</style>
+      {children}
+    </span>
   );
 }
 
@@ -39,7 +62,7 @@ export default function Header() {
   return (
     <header className="fixed top-0 left-0 w-full z-50 shadow-lg">
       <ShimmerBG />
-      <div className="relative max-w-7xl mx-auto px-6 py-3 flex justify-between items-center text-white">
+      <div className="relative max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-white">
         {/* Logo */}
         <motion.a
           href="/"
@@ -49,8 +72,8 @@ export default function Header() {
           transition={{ duration: 0.6 }}
         >
           <Image
-            src="/images/logo.png"
-            alt=""
+            src="/logo.png"
+            alt="HouseySpaces Logo"
             width={110}
             height={80}
             className="drop-shadow-[0_0_14px_rgba(56,189,248,0.9)] hover:scale-110 transition-transform"
@@ -72,14 +95,16 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* CTA */}
-        <motion.a
-          href="/rentals"
-          className="hidden md:block px-5 py-2 rounded-2xl bg-cyan-500 text-white font-semibold shadow-md hover:bg-cyan-400 transition"
-          whileTap={{ scale: 0.95 }}
-        >
-          Book Now
-        </motion.a>
+        {/* CTA with shimmer */}
+        <Shimmer>
+          <motion.a
+            href="/rentals"
+            className="hidden md:block px-5 py-2 rounded-2xl bg-cyan-500 text-white font-semibold shadow-md hover:bg-cyan-400 transition"
+            whileTap={{ scale: 0.95 }}
+          >
+            Book Now
+          </motion.a>
+        </Shimmer>
 
         {/* Mobile Menu Button */}
         <button
@@ -109,13 +134,17 @@ export default function Header() {
                 </a>
               </motion.li>
             ))}
+
+            {/* Mobile CTA with shimmer */}
             <li>
-              <a
-                href="/rentals"
-                className="block w-full text-center px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold shadow-md hover:bg-cyan-400 transition"
-              >
-                Book Now
-              </a>
+              <Shimmer>
+                <a
+                  href="/rentals"
+                  className="block w-full text-center px-5 py-2 rounded-xl bg-cyan-500 text-white font-semibold shadow-md hover:bg-cyan-400 transition"
+                >
+                  Book Now
+                </a>
+              </Shimmer>
             </li>
           </ul>
         </motion.nav>

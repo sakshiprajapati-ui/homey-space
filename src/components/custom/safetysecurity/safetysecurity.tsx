@@ -9,16 +9,9 @@ import {
   Lock,
   FileCheck,
   Users,
-  MapPin,
   PhoneCall,
 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -42,11 +35,11 @@ function Shimmer({ children }: { children: React.ReactNode }) {
   );
 }
 
-// Radiant Border Wrapper
+// Radiant Border Wrapper with theme colors
 function RadiantCard({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-cyan-400 via-purple-400 to-yellow-300 animate-border shadow-[0_0_25px_rgba(255,255,255,0.15)]">
-      <div className="rounded-2xl bg-white/80 backdrop-blur text-gray-900 h-full">
+    <div className="relative rounded-2xl p-[2px] bg-gradient-to-r from-[#021526] via-[#03346E] to-[#6EACDA] animate-border shadow-[0_0_25px_rgba(255,255,255,0.15)]">
+      <div className="rounded-2xl bg-white/90 backdrop-blur text-gray-900 h-full">
         {children}
       </div>
       <style jsx>{`
@@ -103,15 +96,6 @@ const features = [
   },
 ];
 
-const checklist = [
-  "Owner & Property ID Verification",
-  "Fire Safety & First-Aid Availability",
-  "24/7 Caretaker / Warden Details",
-  "Gender-Specific / Family-Only Policies",
-  "Neighborhood Safety Score & Map",
-  "Secure Visitor Management",
-];
-
 export default function SafetySecuritySection({
   variant = "default",
 }: {
@@ -129,7 +113,8 @@ export default function SafetySecuritySection({
 
   return (
     <RadiantCard>
-      <section className="relative mx-auto max-w-7xl scroll-mt-24 rounded-3xl p-6 md:p-10 bg-gradient-to-tr from-[#2A7B9B] via-[#57C785] to-[#EDDD53]">
+      {/* Section background with your palette */}
+      <section className="relative mx-auto max-w-7xl scroll-mt-24 rounded-3xl p-6 md:p-10 bg-gradient-to-tr from-[#021526] via-[#03346E] to-[#6EACDA]">
         {/* Header */}
         <div className="mb-8 flex flex-col items-start gap-3 md:mb-12 md:flex-row md:items-center md:justify-between">
           <div>
@@ -151,12 +136,16 @@ export default function SafetySecuritySection({
             <Shimmer>
               <Button
                 asChild
-                className="rounded-2xl bg-white text-blue-700 hover:bg-gray-100"
+                className="rounded-2xl bg-[#6EACDA] text-[#021526] hover:bg-[#E2E2B6]"
               >
                 <Link href="/safety-policy">View Safety Policy</Link>
               </Button>
             </Shimmer>
-            <Button asChild variant="outline" className="rounded-2xl bg-white/20 text-white border-white/40">
+            <Button
+              asChild
+              variant="outline"
+              className="rounded-2xl bg-white/20 text-white border-white/40"
+            >
               <Link href="/contact">
                 <PhoneCall className="mr-2 h-4 w-4" /> 24/7 Helpline
               </Link>
@@ -174,7 +163,7 @@ export default function SafetySecuritySection({
           ].map((item) => (
             <RadiantCard key={item.label}>
               <div className="text-center p-4">
-                <div className="text-xl font-bold md:text-2xl text-gray-900">
+                <div className="text-xl font-bold md:text-2xl text-[#03346E]">
                   {item.value}
                 </div>
                 <div className="text-xs text-gray-700 md:text-sm">
@@ -198,10 +187,10 @@ export default function SafetySecuritySection({
               <RadiantCard>
                 <Card className="group h-full rounded-2xl border-0 shadow-sm bg-transparent">
                   <CardHeader className="flex flex-row items-center gap-3">
-                    <div className="rounded-xl bg-white/30 p-2 text-gray-900">
+                    <div className="rounded-xl bg-[#E2E2B6]/80 p-2 text-[#021526]">
                       <f.icon className="h-5 w-5" />
                     </div>
-                    <CardTitle className="text-base md:text-lg text-gray-900">
+                    <CardTitle className="text-base md:text-lg text-[#03346E]">
                       {f.title}
                     </CardTitle>
                   </CardHeader>

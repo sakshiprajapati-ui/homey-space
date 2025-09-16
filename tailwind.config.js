@@ -11,6 +11,7 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        houseyBg: "#E2E2B6",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "sans-serif"],
